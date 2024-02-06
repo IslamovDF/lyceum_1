@@ -1,21 +1,22 @@
 import sys
 import sqlite3
-from PyQt5 import uic
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QWidget
+from data.main import Ui_MainWindow
+from data.addEditCoffeeForm import Ui_Form
 
 
-class edit_form(QWidget):
+class edit_form(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
         # self.saveBtn.clicked.connect(self.save_data)
 
 
-class Coffee(QMainWindow):
+class Coffee(QMainWindow, Ui_MainWindow):  # добавили Ui_MainWindow для импорта из .py
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
         self.load_data()
         self.edit_f = edit_form()
         self.edit_f.saveBtn.clicked.connect(self.save_data)
